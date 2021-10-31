@@ -1,0 +1,35 @@
+{% extends "index.html.twig" %}
+
+{% block title %}Hello PlanningController!{% endblock %}
+
+{% block body %}
+    <h2>Je souhaite générer un planning pour une période de :</h2>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="radioPlanning" id="oneDay">
+        <label class="form-check-label" for="oneDay">1 jour</label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="radioPlanning" id="oneWeek">
+        <label class="form-check-label" for="oneWeek">1 semaine</label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="radioPlanning" id="oneMonth">
+        <label class="form-check-label" for="oneMonth">1 mois</label>
+    </div>
+
+    <div>
+        <button class="btn btn-dark text-info" id="generateButton">Générer mes repas aléatoirement</button>
+    </div>
+
+    <form action="POST">
+        <div id='divPlanning' class="container mt-5 pt-5">
+            <div id="divOneDay">{{ include("planning/_formOneDay.html.twig") }}</div>
+            <div id="divOneWeek">{{ include("planning/_formOneWeek.html.twig", {"numberWeek": 1}) }}</div>
+            <div id="divOneMonth">{{ include("planning/_formOneMonth.html.twig") }}</div>
+        </div>
+        <button id="submitButton" type='submit'>Enregistrer</button>
+    </form>
+    <script src="{{ asset('js/selectPlanning.js') }}"></script>
+    <script src="{{ asset('js/generatePlanning.js') }}"></script>
+
+{% endblock %}

@@ -1,0 +1,7 @@
+#divPlanning > div{
+    display : none;
+}
+
+#submitButton, #generateButton{
+    display : none;
+}

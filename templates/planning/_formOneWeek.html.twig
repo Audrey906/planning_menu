@@ -1,0 +1,28 @@
+<table class="table">
+    <thead class="table-dark">
+        <tr>
+            <th scope="col" name="">{% if i is defined %} Semaine {{i}} {% endif %}</th>
+            <th scope="col" name="">Lundi</th>
+            <th scope="col" name="">Mardi</th>
+            <th scope="col" name="">Mercredi</th>
+            <th scope="col" name="">jeudi</th>
+            <th scope="col" name="">Vendredi</th>
+            <th scope="col" name="">Samedi</th>
+            <th scope="col" name="">Dimanche</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="table-dark">Midi</td>
+            {% for i in 1..7 %}
+                {{ include('planning/_formOneDayBodyMidday.html.twig', {'numberDay': i}, {'numberWeek' : numberWeek}) }}
+            {% endfor %}
+        <tr>
+         <tr>
+            <td class="table-dark">Soir</td>
+            {% for i in 1..7 %}
+                {{ include('planning/_formOneDayBodyNight.html.twig', {'numberDay': i}, {'numberWeek' : numberWeek}) }}
+            {% endfor %}
+        <tr>
+    </tbody>
+</table>

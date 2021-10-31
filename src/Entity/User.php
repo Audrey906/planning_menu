@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -47,6 +48,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\OneToMany(targetEntity=Dish::class, mappedBy="category")
      */
     private $dishes;
+
+    /**
+     * @ORM\OneToMany(targetEntity=PlanningMenu::class, mappedBy="user")
+     */
+    private $planningMenus;
+
+    public function __construct()
+    {
+        $this->planningMenus = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -162,6 +173,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         if (!$this->dishes->contains($dish)) {
             $this->dishes[] = $dish;
             $dish->setUser($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|PlanningMenu[]
+     */
+    public function getPlanningMenus(): Collection
+    {
+        return $this->planningMenus;
+    }
+
+    public function addPlanningMenu(PlanningMenu $planningMenu): self
+    {
+        if (!$this->planningMenus->contains($planningMenu)) {
+            $this->planningMenus[] = $planningMenu;
+            $planningMenu->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlanningMenu(PlanningMenu $planningMenu): self
+    {
+        if ($this->planningMenus->removeElement($planningMenu)) {
+            // set the owning side to null (unless already changed)
+            if ($planningMenu->getUser() === $this) {
+                $planningMenu->setUser(null);
+            }
         }
 
         return $this;

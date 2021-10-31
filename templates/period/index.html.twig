@@ -1,26 +1,26 @@
 {% extends 'index.html.twig' %}
 
-{% block title %}Dish index{% endblock %}
+{% block title %}Period index{% endblock %}
 
 {% block body %}
-    <h1>Dish index</h1>
+    <h1>Period index</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Dish_name</th>
+                <th>Period_name</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for dish in dishes %}
+        {% for period in periods %}
             <tr>
-                <td>{{ dish.id }}</td>
-                <td>{{ dish.dishName }}</td>
+                <td>{{ period.id }}</td>
+                <td>{{ period.periodName }}</td>
                 <td>
-                    <a href="{{ path('dish_show', {'id': dish.id}) }}">show</a>
-                    <a href="{{ path('dish_edit', {'id': dish.id}) }}">edit</a>
+                    <a href="{{ path('period_show', {'id': period.id}) }}">show</a>
+                    <a href="{{ path('period_edit', {'id': period.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -31,5 +31,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('dish_new') }}">Create new</a>
+    <a href="{{ path('period_new') }}">Create new</a>
 {% endblock %}
