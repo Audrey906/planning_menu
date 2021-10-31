@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -41,6 +42,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $pseudo;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Dish::class, mappedBy="category")
+     */
+    private $dishes;
 
     public function getId(): ?int
     {
@@ -139,6 +145,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPseudo(?string $pseudo): self
     {
         $this->pseudo = $pseudo;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Dish[]
+     */
+    public function getDishes(): Collection
+    {
+        return $this->dishes;
+    }
+
+    public function addDish(Dish $dish): self
+    {
+        if (!$this->dishes->contains($dish)) {
+            $this->dishes[] = $dish;
+            $dish->setUser($this);
+        }
 
         return $this;
     }

@@ -39,6 +39,11 @@ class Category
      */
     private $dishes;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $category_visible = true;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
@@ -130,6 +135,18 @@ class Category
                 $dish->setCategory(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCategoryVisible(): ?bool
+    {
+        return $this->category_visible;
+    }
+
+    public function setCategoryVisible(bool $category_visible): self
+    {
+        $this->category_visible = $category_visible;
 
         return $this;
     }
