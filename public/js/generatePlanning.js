@@ -1,14 +1,13 @@
 var generateButton = document.getElementById('generateButton');
 var selectElement = document.querySelectorAll('select')
 
-generateButton.addEventListener('click',function(){
-    console.log(selectElement)
-    selectElement.forEach(function(element){
+generateButton.addEventListener('click', function() {
+    for (element of selectElement) {
+        var randomNumber =  Math.floor(Math.random() * 101);
+        var percentDishCat = document.getElementById('percentDishCat');
         elementParentDiv = element.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode
         
-        if (element.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.style.display === 'block') {
-            elementName = element.getAttribute('name');
-            elementCat = elementName.split('_');
+        if (elementParentDiv.style.display === 'block') {
             var arrayValues = [];
             element.childNodes.forEach(function(optionChild)
             {
@@ -21,17 +20,12 @@ generateButton.addEventListener('click',function(){
             var randomValueOption = arrayValues[randomNumber]
             element.childNodes.forEach(function(optionChild)
             {
-                if (optionChild.value !== undefined && optionChild.value == randomValueOption) {
-                    optionChild.setAttribute('selected', true)
+                if (optionChild !== undefined && optionChild.value !== undefined && parseInt(optionChild.value) == optionChild.value) {
+                    optionChild.setAttribute('selected', false)
                 }
-
             });
-            // call route to get a random dish and hydrate option value
-            // or get option and select random value
         }
-        
-    
     } 
-       
-    )
 })
+
+

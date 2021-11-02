@@ -23,7 +23,7 @@ class Dish
     private $dish_name;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="dishes")
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="dishes", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $category;

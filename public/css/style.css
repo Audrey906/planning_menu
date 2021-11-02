@@ -2,6 +2,11 @@
     display : none;
 }
 
-#submitButton, #generateButton{
+#submitButton, #divGenerateButton{
     display : none;
+}
+
+.listingCat{
+    margin-top: 7.2px;
+    margin-bottom: 0.85em;
 }

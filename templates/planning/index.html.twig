@@ -3,6 +3,7 @@
 {% block title %}Hello PlanningController!{% endblock %}
 
 {% block body %}
+<div class="container">
     <h2>Je souhaite générer un planning pour une période de :</h2>
     <div class="form-check">
         <input class="form-check-input" type="radio" name="radioPlanning" id="oneDay">
@@ -17,19 +18,26 @@
         <label class="form-check-label" for="oneMonth">1 mois</label>
     </div>
 
-    <div>
+    <div id="divGenerateButton">
+        <span>Je souhaite que mon plat principal soit constitué à </span>
+        <input type="number" max=100 min=0 name="percentDishCat" id="percentDishCat" value=50>
+        <span>% de plat unique plutôt que de viande/Légume/Féculent.</span>
+        <br>
         <button class="btn btn-dark text-info" id="generateButton">Générer mes repas aléatoirement</button>
     </div>
+</div>
+    
 
-    <form action="POST">
-        <div id='divPlanning' class="container mt-5 pt-5">
-            <div id="divOneDay">{{ include("planning/_formOneDay.html.twig") }}</div>
-            <div id="divOneWeek">{{ include("planning/_formOneWeek.html.twig", {"numberWeek": 1}) }}</div>
-            <div id="divOneMonth">{{ include("planning/_formOneMonth.html.twig") }}</div>
-        </div>
-        <button id="submitButton" type='submit'>Enregistrer</button>
-    </form>
-    <script src="{{ asset('js/selectPlanning.js') }}"></script>
-    <script src="{{ asset('js/generatePlanning.js') }}"></script>
+<form action="POST">
+    <div id='divPlanning' class="container-fluid mt-5 pt-5">
+        <div id="divOneDay">{{ include("planning/_formOneDay.html.twig") }}</div>
+        <div id="divOneWeek">{{ include("planning/_formOneWeek.html.twig", {"numberWeek": 1}) }}</div>
+        <div id="divOneMonth">{{ include("planning/_formOneMonth.html.twig") }}</div>
+    </div>
+    <button id="submitButton" type='submit'>Enregistrer</button>
+</form>
+
+<script src="{{ asset('js/selectPlanning.js') }}"></script>
+<script src="{{ asset('js/generatePlanning.js') }}"></script>
 
 {% endblock %}

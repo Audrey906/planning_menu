@@ -4,12 +4,12 @@ var divOneWeek = document.getElementById('divOneWeek');
 var divOneMonth = document.getElementById('divOneMonth');
 var divPlanning = document.getElementById('divPlanning').children;
 var submitButton = document.getElementById('submitButton');
-var generateButton = document.getElementById('generateButton');
+var divGenerateButton = document.getElementById('divGenerateButton');
 
 elementRadio.forEach( element =>
     element.addEventListener('change', function(){
         submitButton.style.display = 'block';
-        generateButton.style.display = 'block';
+        divGenerateButton.style.display = 'block';
         let elementChecked = element.getAttribute('id');
 
         for (var i = 0; i < divPlanning.length; i++) {

@@ -13,13 +13,41 @@
     </thead>
     <tbody>
         <tr>
-            <td class="table-dark">Midi</td>
+            <td class="table-dark">
+                <div class="row">
+                    <div class="col-4">
+                        Midi
+                    </div>
+                    <div class="col-8">
+                        <p class="listingCat">Entrée</p>
+                        <p class="listingCat">Plat unique</p>
+                        <p class="listingCat">Viande</p>
+                        <p class="listingCat">Légume</p>
+                        <p class="listingCat">Féculent</p>
+                        <p class="listingCat">Déssert</p>
+                    </div>
+                </div>
+            </td>
             {% for i in 1..7 %}
                 {{ include('planning/_formOneDayBodyMidday.html.twig', {'numberDay': i}, {'numberWeek' : numberWeek}) }}
             {% endfor %}
         <tr>
          <tr>
-            <td class="table-dark">Soir</td>
+            <td class="table-dark">
+            <div class="row">
+                    <div class="col-4">
+                        Soir
+                    </div>
+                    <div class="col-8">
+                        <p class="listingCat">Entrée</p>
+                        <p class="listingCat">Plat unique</p>
+                        <p class="listingCat">Viande</p>
+                        <p class="listingCat">Légume</p>
+                        <p class="listingCat">Féculent</p>
+                        <p class="listingCat">Déssert</p>
+                    </div>
+                </div>
+            </td>
             {% for i in 1..7 %}
                 {{ include('planning/_formOneDayBodyNight.html.twig', {'numberDay': i}, {'numberWeek' : numberWeek}) }}
             {% endfor %}
