@@ -27,7 +27,6 @@ generateButton.addEventListener('click', function() {
                 }
 
             });
-            console.log(arrayValues)
         }
     } 
 })
