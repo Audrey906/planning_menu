@@ -3,9 +3,7 @@ var selectElement = document.querySelectorAll('select')
 
 generateButton.addEventListener('click', function() {
     for (element of selectElement) {
-        var randomNumber =  Math.floor(Math.random() * 101);
-        var percentDishCat = document.getElementById('percentDishCat');
-        elementParentDiv = element.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode
+        elementParentDiv = element.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode
         
         if (elementParentDiv.style.display === 'block') {
             var arrayValues = [];
@@ -20,10 +18,16 @@ generateButton.addEventListener('click', function() {
             var randomValueOption = arrayValues[randomNumber]
             element.childNodes.forEach(function(optionChild)
             {
-                if (optionChild !== undefined && optionChild.value !== undefined && parseInt(optionChild.value) == optionChild.value) {
-                    optionChild.setAttribute('selected', false)
+                if (optionChild.value !== undefined && optionChild.selected !== undefined && optionChild.selected === true) {
+                    optionChild.selected = false;
+
                 }
+                if (optionChild.value !== undefined && optionChild.value == randomValueOption) {
+                    optionChild.selected = true;
+                }
+
             });
+            console.log(arrayValues)
         }
     } 
 })

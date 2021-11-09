@@ -1,15 +1,13 @@
-<td>
-    {% for cat in categories %}
-    <div class="d-flex">
-        <select class="form-select" id="{{cat.categoryName}}" name="{{ numberWeek|default(1) }}_1_{{ numberDay|default(1) }}_{{cat.id}}">
-            <option>---</option>
-            {% for dish in dishes %}
-                {% if dish.category.id == cat.id %}
-                <option value="{{dish.id}}">{{dish.dishName}}</option>
-                {% endif %}
-            {% endfor %}
-        </select>   
-        <span class="btn btn-danger ml-1 btnResetSelect">X</span>          
-    </div>
-    {% endfor %}
-</td>
+{% for cat in categories %}
+<div class="d-flex">
+    <select class="form-select" id="{{cat.categoryName}}" name="{{ numberWeek|default(1) }}_1_{{ numberDay|default(1) }}_{{cat.id}}">
+        <option>---</option>
+        {% for dish in dishes %}
+            {% if dish.category.id == cat.id %}
+            <option value="{{dish.id}}">{{dish.dishName}}</option>
+            {% endif %}
+        {% endfor %}
+    </select>   
+    <span class="btn btn-danger ml-1 btnResetSelect">X</span>          
+</div>
+{% endfor %}

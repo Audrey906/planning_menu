@@ -1,56 +1,52 @@
-<table class="table">
-    <thead class="table-dark">
-        <tr>
-            <th scope="col" name="">{% if i is defined %} Semaine {{i}} {% endif %}</th>
-            <th scope="col" name="">Lundi</th>
-            <th scope="col" name="">Mardi</th>
-            <th scope="col" name="">Mercredi</th>
-            <th scope="col" name="">jeudi</th>
-            <th scope="col" name="">Vendredi</th>
-            <th scope="col" name="">Samedi</th>
-            <th scope="col" name="">Dimanche</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td class="table-dark">
-                <div class="row">
-                    <div class="col-4">
-                        Midi
-                    </div>
-                    <div class="col-8">
-                        <p class="listingCat">Entrée</p>
-                        <p class="listingCat">Plat unique</p>
-                        <p class="listingCat">Viande</p>
-                        <p class="listingCat">Légume</p>
-                        <p class="listingCat">Féculent</p>
-                        <p class="listingCat">Déssert</p>
-                    </div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-1">
+            <div class="row bg-dark text-info py-2"><p>{% if i is defined %} Semaine {{i}} {% endif %}</p></div>
+            <div class="row bg-dark text-info pt-1 pb-2">
+                <div class="col-4">
+                    Midi
                 </div>
-            </td>
-            {% for i in 1..7 %}
-                {{ include('planning/_formOneDayBodyMidday.html.twig', {'numberDay': i}, {'numberWeek' : numberWeek}) }}
-            {% endfor %}
-        <tr>
-         <tr>
-            <td class="table-dark">
-            <div class="row">
-                    <div class="col-4">
-                        Soir
-                    </div>
-                    <div class="col-8">
-                        <p class="listingCat">Entrée</p>
-                        <p class="listingCat">Plat unique</p>
-                        <p class="listingCat">Viande</p>
-                        <p class="listingCat">Légume</p>
-                        <p class="listingCat">Féculent</p>
-                        <p class="listingCat">Déssert</p>
-                    </div>
+                <div class="col-8 pt-2">
+                    <p class="listingCat">Entrée</p>
+                    <p class="listingCat">Plat</p>
+                    <p class="listingCat">Déssert</p>
                 </div>
-            </td>
-            {% for i in 1..7 %}
-                {{ include('planning/_formOneDayBodyNight.html.twig', {'numberDay': i}, {'numberWeek' : numberWeek}) }}
-            {% endfor %}
-        <tr>
-    </tbody>
-</table>
+            </div>
+            <div class="row bg-dark text-info ">
+                <div class="col-4">
+                    Soir
+                </div>
+                <div class="col-8 pt-2">
+                    <p class="listingCat">Entrée</p>
+                    <p class="listingCat">Plat</p>
+                    <p class="listingCat">Dessert</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-11">
+            <div class="row bg-dark text-info py-2">
+                <div class="col-12 col-md-1 colDay">Lundi</div>
+                <div class="col-12 col-md-1 colDay">Mardi</div>
+                <div class="col-12 col-md-1 colDay">Mercredi</div>
+                <div class="col-12 col-md-1 colDay">jeudi</div>
+                <div class="col-12 col-md-1 colDay">Vendredi</div>
+                <div class="col-12 col-md-1 colDay">Samedi</div>
+                <div class="col-12 col-md-1 colDay">Dimanche</div>
+            </div>
+            <div class="row py-2 bg-light">
+                {% for i in 1..7 %}
+                    <div class="col-12 col-md-1 colDay">
+                    {{ include('planning/_formOneDayBodyMidday.html.twig', {'numberDay': i}, {'numberWeek' : numberWeek}) }}
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="row py-2">
+                {% for i in 1..7 %}
+                    <div class="col-12 col-md-1 colDay">
+                    {{ include('planning/_formOneDayBodyNight.html.twig', {'numberDay': i}, {'numberWeek' : numberWeek}) }}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
