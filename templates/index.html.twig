@@ -24,38 +24,42 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                        <li class="nav-item">
-                            <a class="nav-link text-info active" aria-current="page" href="{{ path('home') }}">Home</a>
+                        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                        <li class="nav-item px-2"><a class="nav-link text-info" href="{{ path('planning') }}">Planning</a></li>
+                        <li class="nav-item px-2">
+                            <div class="dropdown">
+                                <button class="btn text-info dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Mon compte
+                                </button>
+                                <ul class="bg-dark dropdown-menu" aria-labelledby="dropdownMenuUser">
+                                    <li><a class="nav-link text-info" href="{{ path('profil') }}">Profil</a></li>
+                                    <li><a class="nav-link text-info" href="{{ path('dish_index') }}">Plat</a></li>
+                                    <li><a class="nav-link text-info bg-danger" href="{{ path('app_logout') }}">Logout</a></li>
+                                </ul>
+                            </div>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-info" href="{{ path('planning') }}">Planning</a>
+                        <li class="nav-item px-2">
+                            <div class="dropdown">
+                                <button class="btn text-info dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                   Gestion
+                                </button>
+                                <ul class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuUser">
+                                    <li><a class="nav-link text-info" href="{{ path('day_index') }}">Jours</a></li>
+                                    <li><a class="nav-link text-info" href="{{ path('category_index') }}">Category</a></li>
+                                    <li><a class="nav-link text-info" href="{{ path('period_index') }}">Period</a></li>
+                                    <li><a class="nav-link text-info" href="{{ path('user_index') }}">Users</a></li>
+                                    <li><a class="nav-link text-info bg-danger" href="{{ path('app_logout') }}">Logout</a></li>
+                                </ul>
+                            </div>
                         </li>
+                        {% else %}
                         <li class="nav-item">
-                            <a class="nav-link text-info" href="{{ path('dish_index') }}">Plat</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-info" href="{{ path('user_index') }}">User</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-info" href="{{ path('category_index') }}">Category</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-info" href="{{ path('day_index') }}">Jours</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-info" href="{{ path('period_index') }}">Period</a>
+                            <a class="nav-link text-info" href="{{ path('app_register') }}">Register</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-info" href="{{ path('app_login') }}">Login</a>
                         </li>
-                        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-                        <li class="nav-item">
-                            <a class="nav-link text-info" href="{{ path('app_logout') }}">Logout</a>
-                        </li>
                         {% endif %}
-                        <li class="nav-item">
-                            <a class="nav-link text-info" href="{{ path('app_register') }}">Register</a>
-                        </li>
                     </ul>
                 </div>
             </div>
@@ -64,7 +68,7 @@
 {% block body %}
 
 {% endblock %}
-        </div>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 </html>

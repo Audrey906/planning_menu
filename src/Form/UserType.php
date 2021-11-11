@@ -16,8 +16,7 @@ class UserType extends AbstractType
             ->add('email', TextType::class, [
                 'required' => true,
             ])
-            ->add('roles')
-            ->add('password')
+            // ->add('roles')
             ->add('pseudo')
         ;
     }

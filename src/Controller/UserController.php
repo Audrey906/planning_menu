@@ -3,11 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\EditPasswordUserType;
+use App\Form\EditProfilUserType;
 use App\Form\UserType;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -49,7 +52,39 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="user_show", methods={"GET"})
+     * @Route("/profil", name="profil", methods={"GET"})
+     */
+    public function profil(): Response
+    {
+        $user = $this->getUser();
+
+        return $this->render('user/profil.html.twig', [
+            'user' => $user,
+        ]);
+    }
+
+    /**
+     * @Route("/profil/edit", name="edit_profil", methods={"GET","POST"})
+     */
+    public function editProfil(Request $request): Response
+    {
+        $userCurrent = $this->getUser();
+        $form = $this->createForm(EditProfilUserType::class, $userCurrent);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('profil');
+        }
+
+        return $this->render('user/editProfil.html.twig', [
+            'user' => $userCurrent,
+            'formProfil' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/{id}", name="user_show", requirements={"id"="\d+"}, methods={"GET"})
      */
     public function show(User $user): Response
     {
@@ -90,5 +125,31 @@ class UserController extends AbstractController
         }
 
         return $this->redirectToRoute('user_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    /**
+     * @Route("/profil/edit/password", name="edit_password", methods={"GET","POST"})
+     */
+    public function user_edit_password(Request $request, UserPasswordHasherInterface $encoder): Response
+    {
+        $user = $this->getUser();
+        $form = $this->createForm(EditPasswordUserType::class, $user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $old_pwd = $form->get('old_password')->getData();
+            if ($encoder->isPasswordValid($user, $old_pwd)) {
+                $new_pwd = $form->get('new_password')->getData();
+                $password = $encoder->hashPassword($user, $new_pwd);
+                $user->setPassword($password);
+                $this->getDoctrine()->getManager()->flush();
+
+                return $this->redirectToRoute('profil');
+            }
+        }
+
+        return $this->render('user/editPassword.html.twig', [
+            'user' => $user,
+            'formProfil' => $form->createView(),
+        ]);
     }
 }

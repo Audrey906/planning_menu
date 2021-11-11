@@ -1,0 +1,21 @@
+{% extends 'index.html.twig' %}
+
+{% block title %}Votre profil{% endblock %}
+
+{% block body %}
+
+<div class="d-flex flex-column align-items-center">
+    <div class="row my-4">
+        <h1>Mon Profil</h1>
+    </div>
+    <div class="row">
+        <p><b>Pseudo : </b>{{user.pseudo}}</p>
+        <p><b>Email : </b>{{user.email}}</p>
+        <div class="rows">
+            <a class="btn btn-dark text-info" href="{{ path('edit_profil') }}">Modifier mon profil</a>
+            <a class="btn btn-dark text-info" href="{{ path('edit_password') }}">Modifier mon mot de pass</a>
+        </div>
+    </div>
+</div> 
+
+{% endblock %}
