@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Dish;
 use App\Form\DishType;
 use App\Repository\DishRepository;
+use src\Exception\NotAuthaurized;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,7 +22,7 @@ class DishController extends AbstractController
     public function index(DishRepository $dishRepository): Response
     {
         return $this->render('dish/index.html.twig', [
-            'dishes' => $dishRepository->findAll(),
+            'dishes' => $dishRepository->findBy(['user' => $this->getuser()]),
         ]);
     }
 
@@ -50,20 +51,28 @@ class DishController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="dish_show", methods={"GET"})
+     * @Route("/{id}", name="dish_show", requirements={"id"="\d+"}, methods={"GET"})
      */
     public function show(Dish $dish): Response
     {
+        if ($dish->getUser() !== $this->getUser()) {
+            throw new NotAuthaurized('Vous n\'êtes pas autorisé à voir ce plat');
+        }
+
         return $this->render('dish/show.html.twig', [
             'dish' => $dish,
         ]);
     }
 
     /**
-     * @Route("/{id}/edit", name="dish_edit", methods={"GET","POST"})
+     * @Route("/{id}/edit", name="dish_edit", requirements={"id"="\d+"}, methods={"GET","POST"})
      */
     public function edit(Request $request, Dish $dish): Response
     {
+        if ($dish->getUser() !== $this->getUser()) {
+            throw new NotAuthaurized('Vous n\'êtes pas autorisé à voir ce plat');
+        }
+
         $form = $this->createForm(DishType::class, $dish);
         $form->handleRequest($request);
 
@@ -80,10 +89,14 @@ class DishController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="dish_delete", methods={"POST"})
+     * @Route("/{id}", name="dish_delete", requirements={"id"="\d+"}, methods={"POST"})
      */
     public function delete(Request $request, Dish $dish): Response
     {
+        if ($dish->getUser() !== $this->getUser()) {
+            throw new NotAuthaurized('Vous n\'êtes pas autorisé à voir ce plat');
+        }
+
         if ($this->isCsrfTokenValid('delete'.$dish->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($dish);
@@ -91,5 +104,15 @@ class DishController extends AbstractController
         }
 
         return $this->redirectToRoute('dish_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    /**
+     * @Route("/all", name="dish_index_all", methods={"GET"})
+     */
+    public function indexAll(DishRepository $dishRepository): Response
+    {
+        return $this->render('dish/index.html.twig', [
+            'dishes' => $dishRepository->findAll(),
+        ]);
     }
 }

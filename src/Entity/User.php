@@ -45,7 +45,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $pseudo;
 
     /**
-     * @ORM\OneToMany(targetEntity=Dish::class, mappedBy="category")
+     * @ORM\OneToMany(targetEntity=Dish::class, mappedBy="user")
      */
     private $dishes;
 
@@ -57,6 +57,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct()
     {
         $this->planningMenus = new ArrayCollection();
+        $this->dishes = new ArrayCollection();
     }
 
     public function getId(): ?int
