@@ -22,7 +22,7 @@ class DishController extends AbstractController
     public function index(DishRepository $dishRepository): Response
     {
         return $this->render('dish/index.html.twig', [
-            'dishes' => $dishRepository->findBy(['user' => $this->getuser()]),
+            'dishes' => $dishRepository->findBy(['user' => $this->getuser()], ['dish_name' => 'ASC']),
         ]);
     }
 
