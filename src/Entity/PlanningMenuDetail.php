@@ -40,6 +40,18 @@ class PlanningMenuDetail
      */
     private $period;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Dish::class)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $dish;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -89,6 +101,30 @@ class PlanningMenuDetail
     public function setPeriod(?Period $period): self
     {
         $this->period = $period;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategoryId(?Category $category): self
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    public function getDish(): ?Dish
+    {
+        return $this->dish;
+    }
+
+    public function setDish(?Dish $dish): self
+    {
+        $this->dish = $dish;
 
         return $this;
     }

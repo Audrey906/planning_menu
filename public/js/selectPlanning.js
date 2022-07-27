@@ -1,27 +1,28 @@
 var elementRadio = document.getElementsByName('radioPlanning');
-var divOneDay = document.getElementById('divOneDay');
-var divOneWeek = document.getElementById('divOneWeek');
-var divOneMonth = document.getElementById('divOneMonth');
-var divPlanning = document.getElementById('divPlanning').children;
-var submitButton = document.getElementById('submitButton');
+var formOneDay = document.getElementById('formOneDay');
+var formOneWeek = document.getElementById('formOneWeek');
+var formOneMonth = document.getElementById('formOneMonth');
+
 var divGenerateButton = document.getElementById('divGenerateButton');
 
-elementRadio.forEach( element =>
+elementRadio.forEach(element =>
     element.addEventListener('change', function(){
-        submitButton.style.display = 'block';
         divGenerateButton.style.display = 'block';
         let elementChecked = element.getAttribute('id');
-
-        for (var i = 0; i < divPlanning.length; i++) {
-            divPlanning[i].style.display = 'none';
-        }
-
         if (elementChecked === 'oneDay') {
-            divOneDay.style.display = 'block';
+            console.log(formOneDay)
+            formOneDay.classList.replace('d-none', 'd-block')
+            formOneWeek.classList.replace('d-block', 'd-none')
+            formOneMonth.classList.replace('d-block', 'd-none')
+
         } else if (elementChecked === 'oneWeek') {
-            divOneWeek.style.display = 'block';
+            formOneDay.classList.replace('d-block', 'd-none')
+            formOneWeek.classList.replace('d-none', 'd-block')
+            formOneMonth.classList.replace('d-block', 'd-none')
         } else {
-            divOneMonth.style.display = 'block';
+            formOneDay.classList.replace('d-block', 'd-none')
+            formOneWeek.classList.replace('d-block', 'd-none')
+            formOneMonth.classList.replace('d-none', 'd-block')
         }
     })
 )    

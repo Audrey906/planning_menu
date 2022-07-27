@@ -19,6 +19,15 @@ class PlanningMenuDetailRepository extends ServiceEntityRepository
         parent::__construct($registry, PlanningMenuDetail::class);
     }
 
+    public function getAllDays()
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->getQuery()
+            ->getResult();
+
+        dd($qb);
+    }
+
     // /**
     //  * @return PlanningMenuDetail[] Returns an array of PlanningMenuDetail objects
     //  */

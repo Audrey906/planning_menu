@@ -23,14 +23,34 @@
     </div>
 </div>
     
-
-<form action="POST">
-    <div id='divPlanning' class="container-fluid mt-5 pt-5">
+<form action="{{ path('planning_new') }}" class="formPlanning d-none" id="formOneDay" method="POST">
+    <div class="container-fluid mt-5 pt-5">
+        <div class="d-flex justify-content-center">
+            <h3><input type="text" name="planning-name" placeholder="Entrer le nom du planning" required></h3>
+            <button class="btn btn-dark text-info mx-3" id="submitButtonOneDay" type='submit'>Enregistrer</button>
+        </div>
         <div id="divOneDay">{{ include("planning/_formOneDay.html.twig") }}</div>
+    </div>
+</form>
+
+<form action="{{ path('planning_new') }}" class="formPlanning d-none" id="formOneWeek" method="POST">
+    <div class="container-fluid mt-5 pt-5">
+        <div class="d-flex justify-content-center">
+            <h3><input type="text" name="planning-name" placeholder="Entrer le nom du planning" required></h3>
+            <button class="btn btn-dark text-info mx-3" id="submitButtonOneWeek" type='submit'>Enregistrer</button>
+        </div>
         <div id="divOneWeek">{{ include("planning/_formOneWeek.html.twig", {"numberWeek": 1}) }}</div>
+    </div>
+</form>
+
+<form action="{{ path('planning_new') }}" class="formPlanning d-none" id="formOneMonth" method="POST">
+    <div class="container-fluid mt-5 pt-5">
+        <div class="d-flex justify-content-center">
+            <h3><input type="text" name="planning-name" placeholder="Entrer le nom du planning" required></h3>
+            <button class="btn btn-dark text-info mx-3" id="submitButtonOneMonth" type='submit'>Enregistrer</button>
+        </div>
         <div id="divOneMonth">{{ include("planning/_formOneMonth.html.twig") }}</div>
     </div>
-    <button id="submitButton" type='submit'>Enregistrer</button>
 </form>
 
 <script src="{{ asset('js/selectPlanning.js') }}"></script>
