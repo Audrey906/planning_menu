@@ -40,6 +40,11 @@ class PlanningMenu
      */
     private $planningMenuDetails;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Period::class, inversedBy="planningMenus")
+     */
+    private $type;
+
     public function __construct()
     {
         $this->planningMenuDetails = new ArrayCollection();
@@ -112,6 +117,18 @@ class PlanningMenu
                 $planningMenuDetail->setPlanningMenu(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getType(): ?Period
+    {
+        return $this->type;
+    }
+
+    public function setType(?Period $type): self
+    {
+        $this->type = $type;
 
         return $this;
     }

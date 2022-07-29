@@ -29,9 +29,15 @@ class Period
      */
     private $planningMenuDetails;
 
+    /**
+     * @ORM\OneToMany(targetEntity=PlanningMenu::class, mappedBy="type")
+     */
+    private $planningMenus;
+
     public function __construct()
     {
         $this->planningMenuDetails = new ArrayCollection();
+        $this->planningMenus = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -75,6 +81,36 @@ class Period
             // set the owning side to null (unless already changed)
             if ($planningMenuDetail->getPeriod() === $this) {
                 $planningMenuDetail->setPeriod(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|PlanningMenu[]
+     */
+    public function getPlanningMenus(): Collection
+    {
+        return $this->planningMenus;
+    }
+
+    public function addPlanningMenu(PlanningMenu $planningMenu): self
+    {
+        if (!$this->planningMenus->contains($planningMenu)) {
+            $this->planningMenus[] = $planningMenu;
+            $planningMenu->setType($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlanningMenu(PlanningMenu $planningMenu): self
+    {
+        if ($this->planningMenus->removeElement($planningMenu)) {
+            // set the owning side to null (unless already changed)
+            if ($planningMenu->getType() === $this) {
+                $planningMenu->setType(null);
             }
         }
 

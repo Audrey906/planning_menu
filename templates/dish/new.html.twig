@@ -3,9 +3,27 @@
 {% block title %}New Dish{% endblock %}
 
 {% block body %}
-    <h1>Create new Dish</h1>
+    <div class="container">
 
-    {{ include('dish/_form.html.twig') }}
-
-    <a href="{{ path('dish_index') }}">back to list</a>
+        <div class="row ">
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success d-flex justify-content-center">
+                {{ message }}
+            </div>
+        {% endfor %}
+        </div>
+        <div class="row">
+            <div class="col-12 offset-lg-3 col-lg-6">
+            <h1>Ajouter un plat</h1>
+            {{ include('dish/_form.html.twig') }}
+            <a class="btn btn-info btn-sm btnStandard" max-width="150" href="{{ path('dish_index') }}">
+                <i class="fa-solid fa-rotate-left fa-xs mx-1"></i>
+                <p class="mobile_show"> </p>
+                <span class="desktop_show">Retour à la liste</span>
+            </a>
+            </div>
+        </div>
+        
+    </div>
+    
 {% endblock %}

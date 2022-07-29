@@ -10,7 +10,6 @@ elementRadio.forEach(element =>
         divGenerateButton.style.display = 'block';
         let elementChecked = element.getAttribute('id');
         if (elementChecked === 'oneDay') {
-            console.log(formOneDay)
             formOneDay.classList.replace('d-none', 'd-block')
             formOneWeek.classList.replace('d-block', 'd-none')
             formOneMonth.classList.replace('d-block', 'd-none')

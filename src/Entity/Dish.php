@@ -23,13 +23,13 @@ class Dish
     private $dish_name;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="dishes", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="dishes")
      * @ORM\JoinColumn(nullable=false)
      */
     private $category;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="dishes", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="dishes")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;

@@ -41,7 +41,8 @@ class DishController extends AbstractController
             $entityManager->persist($dish);
             $entityManager->flush();
 
-            return $this->redirectToRoute('dish_index', [], Response::HTTP_SEE_OTHER);
+            $this->addFlash('success', sprintf('Le plat %s a bien été ajouté.', $dish->getDishName()));
+            return $this->redirectToRoute('dish_new', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('dish/new.html.twig', [

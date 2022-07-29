@@ -6,6 +6,7 @@ use App\Entity\Dish;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -24,9 +25,15 @@ class DishType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('dish_name')
+            ->add('dish_name', TextType::class, [
+                'label' => "Nom",
+                'required' => true
+            ])
             ->add('category', ChoiceType::class, [
                 'choices' => [$this->getParents()],
+                'label' => 'Catégorie',
+                'attr' => ['class' => 'd-none'],
+                'label_attr' => ['class' => 'd-none']
              ])
         ;
     }
@@ -41,7 +48,7 @@ class DishType extends AbstractType
                ->getQuery()
                ->getResult();
 
-        $categories['---'] = null;
+        // $categories['---'] = null;
         foreach ($results as $cat) {
             $categories[$cat->getCategoryName()] = $cat;
         }

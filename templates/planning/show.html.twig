@@ -1,0 +1,24 @@
+{% extends "index.html.twig" %}
+
+{% block title %}Hello PlanningController!{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+    <div class="col-4"><h1>{{ planning.planningName }}</h1></div>
+        <div class="col-4">
+            <p>Crée le  {{ planning.planningCreatedDate|date("Y/m/d H:i:s") }}</p>
+        </div>
+        <div class="col-4">    
+            <button class="btn btn-info" onclick="window.print();return false;" />Imprimer</button>
+        </div>
+    </div>
+    {% if planning.type.id == 1 %}
+        {{ include("planning/showPeriod/showOneDay.html.twig") }}
+    {% elseif planning.type.id == 2 %}
+        {{ include("planning/showPeriod/showOneWeek.html.twig") }}
+        {{ include("planning/showPeriod/showOneWeekMobile.html.twig") }}
+    {% else %}
+        {{ include("planning/showPeriod/showOneMonth.html.twig") }}
+    {% endif %}
+{% endblock %}

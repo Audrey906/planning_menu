@@ -29,6 +29,11 @@ class Day
      */
     private $planningMenuDetails;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $day_small_name;
+
     public function __construct()
     {
         $this->planningMenuDetails = new ArrayCollection();
@@ -77,6 +82,18 @@ class Day
                 $planningMenuDetail->setDay(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDaySmallName(): ?string
+    {
+        return $this->day_small_name;
+    }
+
+    public function setDaySmallName(?string $day_small_name): self
+    {
+        $this->day_small_name = $day_small_name;
 
         return $this;
     }

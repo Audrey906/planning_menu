@@ -9,4 +9,61 @@
 
 .colDay{
     width: 14.28%;
+    border-right: 1px solid black;
+}
+
+.colDayMobile{
+    border-right: 1px solid black;
+}
+
+.desktop_show {
+    display: none;
+}
+
+.mobile_show {
+    display: block;
+}
+
+.mobile_show p {
+    font-size: 0.8em;
+}
+
+.btnStandard {
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    margin: 5px;
+    width: 50px;
+    max-width: 150px;
+    min-width: 50px;
+}
+
+.btnDelete {
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    margin: 5px;
+    max-width: 150px;
+    min-width: 50px;
+}
+
+/************************************************************************************************             1025 */
+
+@media screen and (min-width: 1025px) {
+    .desktop_show {
+        display: block;
+    }
+    
+    .mobile_show {
+        display: none;
+    }
+
+    .btnStandard {
+        margin: 20px;
+        width: 150px;
+    }
+    
+    .btnDelete {
+        margin: 20px;
+    }
 }
