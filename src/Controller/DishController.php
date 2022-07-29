@@ -104,6 +104,7 @@ class DishController extends AbstractController
             $entityManager->flush();
         }
 
+        $this->addFlash('success-delete', sprintf('Le plat %s a bien été supprimé.', $dish->getDishName()));
         return $this->redirectToRoute('dish_index', [], Response::HTTP_SEE_OTHER);
     }
 
