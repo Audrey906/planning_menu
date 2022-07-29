@@ -6,11 +6,11 @@
     <div class="container">
 
         <div class="row ">
-        {% for message in app.flashes('success') %}
-            <div class="alert alert-success d-flex justify-content-center">
-                {{ message }}
-            </div>
-        {% endfor %}
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success d-flex justify-content-center">
+                    {{ message }}
+                </div>
+            {% endfor %}
         </div>
         <div class="row">
             <div class="col-12 offset-lg-3 col-lg-6">

@@ -5,6 +5,14 @@
 {% block body %}
     <div class="container">
         <h1>Liste des repas</h1>
+        <div class="row ">
+            {% for message in app.flashes('success-delete') %}
+                <div class="alert alert-danger d-flex justify-content-center">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+
         <a class="btn btn-info btnStandard" href="{{ path('dish_new') }}">
             <i class="fa-solid fa-circle-plus"></i>
             <p class="mobile_show"> </p>
