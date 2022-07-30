@@ -3,9 +3,9 @@
 {% block title %}Hello PlanningController!{% endblock %}
 
 {% block body %}
-{{ include("planning/modalChangeDish.html.twig") }}
+{{ include("planning/dropdown/modalChangeDish.html.twig") }}
     <div id="planningArray">
-        <div class="row">
+        <div class="row align-items-end">
             <div class="col-4 offset-md-3 col-md-2"><h1>{{ planning.planningName }}</h1></div>
             <div class="col-4 col-md-2">
                 <p>Crée le {{ planning.planningCreatedDate|date("Y/m/d H:i:s") }}</p>

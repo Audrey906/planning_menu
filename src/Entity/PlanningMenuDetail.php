@@ -52,6 +52,11 @@ class PlanningMenuDetail
      */
     private $dish;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $done = 0;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -125,6 +130,18 @@ class PlanningMenuDetail
     public function setDish(?Dish $dish): self
     {
         $this->dish = $dish;
+
+        return $this;
+    }
+
+    public function getDone(): ?bool
+    {
+        return $this->done;
+    }
+
+    public function setDone(?bool $done): self
+    {
+        $this->done = $done;
 
         return $this;
     }

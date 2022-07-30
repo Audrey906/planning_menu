@@ -1,0 +1,7 @@
+<ul class="dropdown-menu">
+    <form action="{{ path('planning_detail_update_visibility', {'id': d.id}) }}" method="post">
+        <li><button class="dropdown-item cross" type="submit" >
+        {% if d.done == 0 %}Cocher {% else %}  Décocher {% endif %}</button></li>
+    </form>
+    <li><p class="dropdown-item update" data-bs-toggle="modal" data-bs-target="#modalChangeDish">Modifier</p></li>
+</ul>

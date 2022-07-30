@@ -20,11 +20,8 @@
                             {% for dish in dishes %}
                                 {% if dish.id == d.dish.id %}
                                     <div class="dropdown">
-                                        <span id="{{ d.id }}" class="dropdown-toggle" data-bs-toggle="dropdown">{{dish.dishName}}</span> 
-                                        <ul class="dropdown-menu">
-                                            <li><p class="dropdown-item cross" >Cocher</p></li>
-                                            <li><p class="dropdown-item update" data-bs-toggle="modal" data-bs-target="#modalChangeDish">Modifier</p></li>
-                                        </ul>
+                                        <span id="{{ d.id }}" class="dropdown-toggle {% if d.done == 1 %} lineThrough {% endif %}" data-bs-toggle="dropdown">{{dish.dishName}}</span> 
+                                        {{ include("planning/dropdown/dropdown.html.twig") }}
                                     </div>
                                 {% endif %}
                             {% endfor %}
@@ -51,11 +48,8 @@
                             {% for dish in dishes %}
                                 {% if dish.id == d.dish.id %}
                                     <div class="dropdown">
-                                        <span id="{{ d.id }}" class="dropdown-toggle" data-bs-toggle="dropdown">{{dish.dishName}}</span> 
-                                        <ul class="dropdown-menu">
-                                            <li><p class="dropdown-item cross" >Cocher</p></li>
-                                            <li><p class="dropdown-item update" data-bs-toggle="modal" data-bs-target="#modalChangeDish">Modifier</p></li>
-                                        </ul>
+                                        <span id="{{ d.id }}" class="dropdown-toggle {% if d.done == 1 %} lineThrough {% endif %}" data-bs-toggle="dropdown">{{dish.dishName}}</span> 
+                                        {{ include("planning/dropdown/dropdown.html.twig") }}
                                     </div>
                                 {% endif %}
                             {% endfor %}
@@ -66,4 +60,4 @@
         </div>
     </div>
 </div>
-{{ include("planning/modalChangeDish.html.twig") }}
+{{ include("planning/dropdown/modalChangeDish.html.twig") }}

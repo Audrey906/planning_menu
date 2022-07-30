@@ -13,26 +13,20 @@
                 {% if i == d.weekId %}
                     {% if 1 == d.period.id and d.day.id == day.id %}
                         <div class="col-5 colDayMobile dropdown">
-                            <p id="{{ d.id }}" class="dropdown-toggle" data-bs-toggle="dropdown">{{ d.dish.dishName}}</p>
-                            <ul class="dropdown-menu">
-                                <li><p class="dropdown-item cross" >Cocher</p></li>
-                                <li><p class="dropdown-item update" data-bs-toggle="modal" data-bs-target="#modalChangeDish">Modifier</p></li>
-                            </ul>
+                            <p id="{{ d.id }}" class="dropdown-toggle {% if d.done == 1 %} lineThrough {% endif %}" data-bs-toggle="dropdown">{{ d.dish.dishName}}</p>
+                            {{ include("planning/dropdown/dropdown.html.twig") }}
                         </div>
                     {% endif %}
                     {% if 2 == d.period.id and d.day.id == day.id %}
                         <div class="col-5 colDayMobile dropdown">
-                            <p id="{{ d.id }}" class="dropdown-toggle" data-bs-toggle="dropdown">{{d.dish.dishName}}</p>
-                            <ul class="dropdown-menu">
-                                <li><p class="dropdown-item cross" >Cocher</p></li>
-                                <li><p class="dropdown-item update" data-bs-toggle="modal" data-bs-target="#modalChangeDish">Modifier</p></li>
-                            </ul>
+                            <p id="{{ d.id }}" class="dropdown-toggle {% if d.done == 1 %} lineThrough {% endif %}" data-bs-toggle="dropdown">{{d.dish.dishName}}</p>
+                            {{ include("planning/dropdown/dropdown.html.twig") }}
                         </div>
                     {% endif %}
                 {% endif %}
             {% endfor %} 
         </div>
-        {{ include("planning/modalChangeDish.html.twig") }}
+{{ include("planning/dropdown/modalChangeDish.html.twig") }}
     {% endfor %} 
 </div>
-{# <script src="{{ asset('js/dishActionMobile.js') }}"></script> #}
+<script src="{{ asset('js/dishActionMobile.js') }}"></script> 

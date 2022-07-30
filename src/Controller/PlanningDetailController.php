@@ -43,4 +43,34 @@ class PlanningDetailController extends AbstractController
             'days' => $days,
         ]);
     }
+
+    /**
+     * @Route("/planning/detail/update/visibilty/{id}", name="planning_detail_update_visibility",methods={"POST"})
+     */
+    public function updateVisibility(PlanningMenuDetail $planningDetail, Request $request, PlanningMenuDetailRepository $planningDetailRepo, DishRepository $dishRepo, DayRepository $dayRepo): Response
+    {
+        $visibility = false;
+        if (!$planningDetail->getDone()) {
+            $visibility = true;
+       }
+
+        // update planningDetail
+        $planningDetail->setDone($visibility);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($planningDetail);
+        $entityManager->flush();
+
+        // info for render
+        $planning = $planningDetail->getPlanningMenu();
+        $detail = $planning->getPlanningMenuDetails()->getValues();
+        $dishes = $dishRepo->findBy(['user' => $this->getUser()]);
+        $days = $dayRepo->findAll();
+
+        return $this->render('planning/show.html.twig', [
+            'planning' => $planning,
+            'detail' => $detail,
+            'dishes' => $dishes,
+            'days' => $days,
+        ]);
+    }
 }
