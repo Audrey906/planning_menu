@@ -18,6 +18,10 @@
     border-right: 1px solid black;
 }
 
+.dropdown-item {
+    font-size: 0.7em;
+}
+
 .desktop_show {
     display: none;
 }
