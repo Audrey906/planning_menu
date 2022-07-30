@@ -1,0 +1,4 @@
+{% for i in 1..4 %}
+    {{ include("planning/showPeriod/showOneWeekMobile.html.twig") }}
+    {{ include('planning/showPeriod/showOneWeek.html.twig', {'numberWeek': i}) }}
+{% endfor %}

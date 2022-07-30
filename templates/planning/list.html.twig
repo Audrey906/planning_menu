@@ -1,0 +1,45 @@
+{% extends "index.html.twig" %}
+
+{% block title %}Hello PlanningController!{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>List des Menus</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Date</th>
+                <th>Période</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for menu in planning %}
+            <tr>
+                <td>#{{ menu.id }}</td>
+                <td>{{ menu.planningName }}</td>
+                <td >{{ menu.planningCreatedDate|date("Y-m-d H:i:s") }}</td>
+                <td>1 {{ menu.type.periodName }}</td>
+                <td>
+                    <a class="btn btn-info btn-sm btnStandard my-0"  href="{{ path('planning_show', {'id': menu.id}) }}">
+                        <i class="fa-solid fa-eye fa-xs mx-1"></i>
+                        <p class="mobile_show"> </p>
+                        <span class="desktop_show">Voir</span> 
+                    </a>
+                    {# <a href="{{ path('period_edit', {'id': period.id}) }}">edit</a> #}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>   
+<script src="{{ asset('js/selectPlanning.js') }}"></script>
+<script src="{{ asset('js/generatePlanning.js') }}"></script>
+
+{% endblock %}

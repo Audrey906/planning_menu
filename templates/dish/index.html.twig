@@ -1,0 +1,56 @@
+{% extends 'index.html.twig' %}
+
+{% block title %}Dish index{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Liste des repas</h1>
+        <div class="row ">
+            {% for message in app.flashes('success-delete') %}
+                <div class="alert alert-danger d-flex justify-content-center">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+
+        <a class="btn btn-info btnStandard" href="{{ path('dish_new') }}">
+            <i class="fa-solid fa-circle-plus"></i>
+            <p class="mobile_show"> </p>
+            <span class="desktop_show">Ajouter</span> 
+        </a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Repas</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for dish in dishes %}
+                <tr>
+                    <td>{{ dish.dishName|capitalize }}</td>
+                    <td class="d-flex">
+                        <a class="btn btn-info btn-sm btnStandard"  href="{{ path('dish_show', {'id': dish.id}) }}">
+                            <i class="fa-solid fa-eye fa-xs mx-1"></i>
+                            <p class="mobile_show"> </p>
+                            <span class="desktop_show">Voir</span> 
+                        </a>
+                        {% if app.user.id is same as dish.user.id %}
+                            <a class="btn btn-info btn-sm btnStandard" href="{{ path('dish_edit', {'id': dish.id}) }}">
+                                <i class="fa-solid fa-pen fa-xs mx-1"></i>
+                                <p class="mobile_show"> </p>
+                                <span class="desktop_show">Modifier</span> 
+                            </a>
+                        {% endif %}
+                        {{ include('dish/_delete_form.html.twig') }}
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

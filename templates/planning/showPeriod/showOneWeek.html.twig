@@ -1,0 +1,68 @@
+{% if i is not defined %} {% set i = 1 %} {% endif %}
+<div id="" class="container-fluid desktop_show mb-3">
+    <div class="row">
+        <div class="col-1">
+            <div class="row bg-dark text-info"><p>Sem. {{i}}</p></div>
+            <div class="row bg-dark text-info pt-1 pb-2">
+                <div class="col-4 py-1">
+                    Midi
+                </div>
+                {# <div class="col-8 pt-2">
+                    <p class="listingCat">Entrée</p>
+                    <p class="listingCat">Plat</p>
+                    {# <p class="listingCat">Dessert</p> 
+                </div>#}
+            </div>
+            <div class="row bg-dark text-info ">
+                <div class="col-4 py-1">
+                    Soir
+                </div>
+                {# <div class="col-8 pt-2">
+                    <p class="listingCat">Entrée</p>
+                    <p class="listingCat">Plat</p>
+                    {# <p class="listingCat">Dessert</p> 
+                </div>#}
+            </div>
+        </div>
+        <div class="col-11">
+            <div class="row bg-dark text-info py-2">
+                <div class="col-12 col-md-1 colDay">Lundi</div>
+                <div class="col-12 col-md-1 colDay">Mardi</div>
+                <div class="col-12 col-md-1 colDay">Mercredi</div>
+                <div class="col-12 col-md-1 colDay">jeudi</div>
+                <div class="col-12 col-md-1 colDay">Vendredi</div>
+                <div class="col-12 col-md-1 colDay">Samedi</div>
+                <div class="col-12 col-md-1 colDay">Dimanche</div>
+            </div>
+            <div class="row py-2 bg-light border">
+                    {% for d in detail %}
+                        {% if 1 == d.period.id and i == d.weekId %}
+                            {% for dish in dishes %}
+                                {% if dish.id == d.dish.id %}
+                                    <div class="col-12 col-md-1 colDay dropdown">
+                                        <span id="{{ d.id }}" class="dropdown-toggle {% if d.done == 1 %} lineThrough {% endif %}" data-bs-toggle="dropdown">{{dish.dishName}}</span> 
+                                        {{ include("planning/dropdown/dropdown.html.twig") }}
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    {% endfor %} 
+            </div>
+            <div class="row py-2">
+                    {% for d in detail %}
+                        {% if 2 == d.period.id and i == d.weekId %}
+                            {% for dish in dishes %}
+                                {% if dish.id == d.dish.id %}
+                                    <div class="col-12 col-md-1 colDay dropdown">
+                                        <span id="{{ d.id }}" class="dropdown-toggle {% if d.done == 1 %} lineThrough {% endif %}" data-bs-toggle="dropdown">{{dish.dishName}}</span> 
+                                        {{ include("planning/dropdown/dropdown.html.twig") }}
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    {% endfor %} 
+            </div>
+        </div>
+    </div>
+</div>
+

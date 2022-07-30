@@ -1,0 +1,72 @@
+{% extends "index.html.twig" %}
+
+{% block title %}Hello PlanningController!{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h2>Je souhaite générer un planning pour une période de :</h2>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="radioPlanning" id="oneDay">
+        <label class="form-check-label" for="oneDay">1 jour</label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="radioPlanning" id="oneWeek">
+        <label class="form-check-label" for="oneWeek">1 semaine</label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="radioPlanning" id="oneMonth">
+        <label class="form-check-label" for="oneMonth">1 mois</label>
+    </div>
+
+    <div id="divGenerateButton">
+        <button class="btn btn-dark text-info" id="generateButton">Générer mes repas aléatoirement</button>
+    </div>
+</div>
+    
+<form action="{{ path('planning_new') }}" class="formPlanning d-none" id="formOneDay" method="POST">
+    <div class="container-fluid mt-5 pt-5">
+        <div class="row justify-content-center">
+            <div class="col-12 offset-lg-3 col-lg-3 px-lg-5">
+                <h3><input type="text" name="planning-name" placeholder="Entrer le nom du planning" required></h3>
+            </div>
+            <div class="col-12 col-lg-6">
+                <button class="btn btn-dark text-info mx-3" id="submitButtonOneDay" type='submit'>Enregistrer</button>
+            </div>
+        </div>
+        <div id="divOneDay">{{ include("planning/_formOneDay.html.twig") }}</div>
+    </div>
+</form>
+
+<form action="{{ path('planning_new') }}" class="formPlanning d-none" id="formOneWeek" method="POST">
+    <div class="container-fluid mt-5 pt-5">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-6"><h3><input type="text" name="planning-name" placeholder="Entrer le nom du planning" required></h3>
+            </div>
+            <div class="col-12 col-lg-6">
+                <button class="btn btn-dark text-info mx-3" id="submitButtonOneWeek" type='submit'>Enregistrer</button>
+            </div>
+            </div>
+        <div id="divOneWeek">
+        {{ include("planning/_formOneWeek.html.twig", {"numberWeek": 1}) }}
+        {{ include("planning/_formOneWeekMobile.html.twig", {"numberWeek": 1}) }}
+        </div>
+    </div>
+</form>
+
+<form action="{{ path('planning_new') }}" class="formPlanning d-none" id="formOneMonth" method="POST">
+    <div class="container-fluid mt-5 pt-5">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-6"><h3><input type="text" name="planning-name" placeholder="Entrer le nom du planning" required></h3>
+            </div>
+            <div class="col-12 col-lg-6">
+                <button class="btn btn-dark text-info mx-3" id="submitButtonOneMonth" type='submit'>Enregistrer</button>
+            </div>
+            </div>
+        <div id="divOneMonth">{{ include("planning/_formOneMonth.html.twig") }}</div>
+    </div>
+</form>
+
+<script src="{{ asset('js/selectPlanning.js') }}"></script>
+<script src="{{ asset('js/generatePlanning.js') }}"></script>
+
+{% endblock %}

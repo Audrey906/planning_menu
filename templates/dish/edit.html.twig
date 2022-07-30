@@ -1,0 +1,16 @@
+{% extends 'index.html.twig' %}
+
+{% block title %}Edit Dish{% endblock %}
+
+{% block body %}
+    <h1>Edit Dish</h1>
+
+    {{ include('dish/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+     <a class="btn btn-info btn-sm btnStandard" href="{{ path('dish_index') }}">
+        <i class="fa-solid fa-rotate-left fa-xs mx-1"></i>
+        <p class="mobile_show"> </p>
+        <span class="desktop_show">Retour à la liste</span>
+    </a>
+
+{% endblock %}

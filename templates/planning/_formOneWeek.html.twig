@@ -1,0 +1,52 @@
+<div class="container-fluid desktop_show">
+    <div class="row">
+        <div class="col-1">
+            <div class="row bg-dark text-info "><p>{% if i is defined %} Semaine {{i}} {% else %} Semaine 1 {% endif %}</p></div>
+            <div class="row bg-dark text-info pt-1 pb-2">
+                <div class="col-4 py-2">
+                    Midi
+                </div>
+                <div class="col-8 pt-2">
+                    {# <p class="listingCat">Entrée</p> #}
+                    {# <p class="listingCat">Plat</p> #}
+                    {# <p class="listingCat">Déssert</p> #}
+                </div>
+            </div>
+            <div class="row bg-dark text-info ">
+                <div class="col-4 py-2">
+                    Soir
+                </div>
+                <div class="col-8 pt-2">
+                    {# <p class="listingCat">Entrée</p> #}
+                    {# <p class="listingCat">Plat</p> #}
+                    {# <p class="listingCat">Dessert</p> #}
+                </div>
+            </div>
+        </div>
+        <div class="col-11">
+            <div class="row bg-dark text-info py-2">
+                <div class="col-12 col-md-1 colDay">Lundi</div>
+                <div class="col-12 col-md-1 colDay">Mardi</div>
+                <div class="col-12 col-md-1 colDay">Mercredi</div>
+                <div class="col-12 col-md-1 colDay">jeudi</div>
+                <div class="col-12 col-md-1 colDay">Vendredi</div>
+                <div class="col-12 col-md-1 colDay">Samedi</div>
+                <div class="col-12 col-md-1 colDay">Dimanche</div>
+            </div>
+            <div class="row py-2 bg-light">
+                {% for i in 1..7 %}
+                    <div class="col-12 col-md-1 colDay">
+                    {{ include('planning/_formOneDayBodyMidday.html.twig', {'numberDay': i}, {'numberWeek' : numberWeek}) }}
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="row py-2">
+                {% for i in 1..7 %}
+                    <div class="col-12 col-md-1 colDay">
+                    {{ include('planning/_formOneDayBodyNight.html.twig', {'numberDay': i}, {'numberWeek' : numberWeek}) }}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
