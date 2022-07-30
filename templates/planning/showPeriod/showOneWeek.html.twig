@@ -1,5 +1,5 @@
 {% if i is not defined %} {% set i = 1 %} {% endif %}
-<div id="" class="container-fluid desktop_show">
+<div id="" class="container-fluid desktop_show mb-3">
     <div class="row">
         <div class="col-1">
             <div class="row bg-dark text-info"><p>Sem. {{i}}</p></div>
@@ -39,7 +39,10 @@
                         {% if 1 == d.period.id and i == d.weekId %}
                             {% for dish in dishes %}
                                 {% if dish.id == d.dish.id %}
-                                    <div class="col-12 col-md-1 colDay">{{dish.dishName}}</div>
+                                    <div class="col-12 col-md-1 colDay dropdown">
+                                        <span id="{{ d.id }}" class="dropdown-toggle {% if d.done == 1 %} lineThrough {% endif %}" data-bs-toggle="dropdown">{{dish.dishName}}</span> 
+                                        {{ include("planning/dropdown/dropdown.html.twig") }}
+                                    </div>
                                 {% endif %}
                             {% endfor %}
                         {% endif %}
@@ -50,7 +53,10 @@
                         {% if 2 == d.period.id and i == d.weekId %}
                             {% for dish in dishes %}
                                 {% if dish.id == d.dish.id %}
-                                    <div class="col-12 col-md-1 colDay">{{dish.dishName}}</div>
+                                    <div class="col-12 col-md-1 colDay dropdown">
+                                        <span id="{{ d.id }}" class="dropdown-toggle {% if d.done == 1 %} lineThrough {% endif %}" data-bs-toggle="dropdown">{{dish.dishName}}</span> 
+                                        {{ include("planning/dropdown/dropdown.html.twig") }}
+                                    </div>
                                 {% endif %}
                             {% endfor %}
                         {% endif %}
@@ -59,3 +65,4 @@
         </div>
     </div>
 </div>
+

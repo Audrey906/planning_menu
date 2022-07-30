@@ -76,7 +76,7 @@ class PlanningController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="planning_new", methods={"GET","POST"})
+     * @Route("/new", name="planning_new", methods={"POST"})
      */
     public function new(Request $request): Response
     {
@@ -144,7 +144,7 @@ class PlanningController extends AbstractController
     }
 
     /**
-     * @Route("/planning/list", name="planning_list",)
+     * @Route("/planning/list", name="planning_list")
      */
     public function planning_list(PlanningMenuRepository $planningRepo): Response
     {
@@ -156,12 +156,12 @@ class PlanningController extends AbstractController
     }
 
      /**
-     * @Route("/planning/{id}}", name="planning_show",)
+     * @Route("/planning/{id}", name="planning_show")
      */
     public function show(PlanningMenu $planning): Response
     {
         $detail = $planning->getPlanningMenuDetails()->getValues();
-        $dishes = $this->dishRepo->findAll(['user' => $this->getUser()]);
+        $dishes = $this->dishRepo->findBy(['user' => $this->getUser()]);
         $days = $this->dayRepo->findAll();
 
         return $this->render('planning/show.html.twig', [

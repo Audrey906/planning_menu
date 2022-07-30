@@ -1,0 +1,29 @@
+<div class="modal fade" id="modalChangeDish" tabindex="-1" aria-labelledby="modalChangeDish" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+      <h5>Modifier un plat</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="{{ path('planning_detail_update_dish') }}" method="post">
+            Modifier le plat <span id="dishToUpdate">s</span> par :
+            <input name="idPlanning" id="idPlanning" type="hidden"></input>
+            <select name="newDish" id="newDish">
+                {% for dish in dishes %}
+                <option value="{{ dish.id }}"> {{ dish.dishName }}</option>
+                {% endfor %}
+            </select>
+             <div class="modal-footer">
+                <button class="btn btn-success btn-sm btnStandard" type="submit">
+                    <i class="fa-solid fa-floppy-disk fa-xs mx-1"></i>
+                    <p class="mobile_show"> </p>
+                    <span class="desktop_show">{{ button_label|default('Enregistrer') }}</span>
+                </button>
+                <button type="button" class="btn btn-secondary btn-sm btnStandard" data-bs-dismiss="modal">Close</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,24 +1,24 @@
 <div class="container-fluid desktop_show">
     <div class="row">
         <div class="col-1">
-            <div class="row bg-dark text-info py-2"><p>{% if i is defined %} Semaine {{i}} {% endif %}</p></div>
+            <div class="row bg-dark text-info "><p>{% if i is defined %} Semaine {{i}} {% else %} Semaine 1 {% endif %}</p></div>
             <div class="row bg-dark text-info pt-1 pb-2">
-                <div class="col-4">
+                <div class="col-4 py-2">
                     Midi
                 </div>
                 <div class="col-8 pt-2">
                     {# <p class="listingCat">Entrée</p> #}
-                    <p class="listingCat">Plat</p>
+                    {# <p class="listingCat">Plat</p> #}
                     {# <p class="listingCat">Déssert</p> #}
                 </div>
             </div>
             <div class="row bg-dark text-info ">
-                <div class="col-4">
+                <div class="col-4 py-2">
                     Soir
                 </div>
                 <div class="col-8 pt-2">
                     {# <p class="listingCat">Entrée</p> #}
-                    <p class="listingCat">Plat</p>
+                    {# <p class="listingCat">Plat</p> #}
                     {# <p class="listingCat">Dessert</p> #}
                 </div>
             </div>

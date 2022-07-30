@@ -1,5 +1,5 @@
 {% if i is not defined %} {% set i = 1 %} {% endif %}
-<div id="" class="container-fluid mobile_show">
+<div id="" class="container-fluid mobile_show dontPrint">
     <div class="row bg-info text-dark">Semaine {{ i }}</div>
     <div class="row bg-dark text-info">
         <div class="col-4">Jour</div>
@@ -12,13 +12,21 @@
             {% for d in detail %}
                 {% if i == d.weekId %}
                     {% if 1 == d.period.id and d.day.id == day.id %}
-                        <div class="col-5 colDayModile"><p>{{ d.dish.dishName}}</p></div>
+                        <div class="col-5 colDayMobile dropdown">
+                            <p id="{{ d.id }}" class="dropdown-toggle {% if d.done == 1 %} lineThrough {% endif %}" data-bs-toggle="dropdown">{{ d.dish.dishName}}</p>
+                            {{ include("planning/dropdown/dropdown.html.twig") }}
+                        </div>
                     {% endif %}
-                    {% if 2 == d.period.id and d.day.id == day.id%}
-                        <div class="col-5 colDayModile"><p>{{d.dish.dishName}}</p></div>
+                    {% if 2 == d.period.id and d.day.id == day.id %}
+                        <div class="col-5 colDayMobile dropdown">
+                            <p id="{{ d.id }}" class="dropdown-toggle {% if d.done == 1 %} lineThrough {% endif %}" data-bs-toggle="dropdown">{{d.dish.dishName}}</p>
+                            {{ include("planning/dropdown/dropdown.html.twig") }}
+                        </div>
                     {% endif %}
                 {% endif %}
             {% endfor %} 
         </div>
+{{ include("planning/dropdown/modalChangeDish.html.twig") }}
     {% endfor %} 
 </div>
+<script src="{{ asset('js/dishActionMobile.js') }}"></script> 

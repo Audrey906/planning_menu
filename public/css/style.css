@@ -10,10 +10,16 @@
 .colDay{
     width: 14.28%;
     border-right: 1px solid black;
+    height:24px;
+    font-size: 0.7em;
 }
 
 .colDayMobile{
     border-right: 1px solid black;
+}
+
+.dropdown-item {
+    font-size: 0.7em;
 }
 
 .desktop_show {
@@ -36,6 +42,7 @@
     width: 50px;
     max-width: 150px;
     min-width: 50px;
+    min-height: 50px;
 }
 
 .btnDelete {
@@ -46,6 +53,10 @@
     max-width: 150px;
     min-width: 50px;
 }
+
+.lineThrough {
+    text-decoration: line-through;
+  }
 
 /************************************************************************************************             1025 */
 
