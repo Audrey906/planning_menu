@@ -10,6 +10,8 @@
 .colDay{
     width: 14.28%;
     border-right: 1px solid black;
+    height:24px;
+    font-size: 0.7em;
 }
 
 .colDayMobile{
@@ -36,6 +38,7 @@
     width: 50px;
     max-width: 150px;
     min-width: 50px;
+    min-height: 50px;
 }
 
 .btnDelete {
@@ -46,6 +49,7 @@
     max-width: 150px;
     min-width: 50px;
 }
+
 
 /************************************************************************************************             1025 */
 

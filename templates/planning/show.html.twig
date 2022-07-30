@@ -3,22 +3,35 @@
 {% block title %}Hello PlanningController!{% endblock %}
 
 {% block body %}
-
-    <div class="row">
-    <div class="col-4"><h1>{{ planning.planningName }}</h1></div>
-        <div class="col-4">
-            <p>Crée le  {{ planning.planningCreatedDate|date("Y/m/d H:i:s") }}</p>
+{{ include("planning/modalChangeDish.html.twig") }}
+    <div id="planningArray">
+        <div class="row">
+            <div class="col-4 offset-md-3 col-md-2"><h1>{{ planning.planningName }}</h1></div>
+            <div class="col-4 col-md-2">
+                <p>Crée le {{ planning.planningCreatedDate|date("Y/m/d H:i:s") }}</p>
+            </div>
+            <div class="col-4 col-md-2">    
+                <button class="btn btn-info desktop_show" id="print" onclick="print()"/>Imprimer</button>
+            </div>
         </div>
-        <div class="col-4">    
-            <button class="btn btn-info" onclick="window.print();return false;" />Imprimer</button>
-        </div>
+        {% if planning.type.id == 1 %}
+            {{ include("planning/showPeriod/showOneDay.html.twig") }}
+        {% elseif planning.type.id == 2 %}
+            {{ include("planning/showPeriod/showOneWeekMobile.html.twig") }}
+            {{ include("planning/showPeriod/showOneWeek.html.twig") }}
+        {% else %}
+            {{ include("planning/showPeriod/showOneMonth.html.twig") }}
+        {% endif %}
     </div>
-    {% if planning.type.id == 1 %}
-        {{ include("planning/showPeriod/showOneDay.html.twig") }}
-    {% elseif planning.type.id == 2 %}
-        {{ include("planning/showPeriod/showOneWeek.html.twig") }}
-        {{ include("planning/showPeriod/showOneWeekMobile.html.twig") }}
-    {% else %}
-        {{ include("planning/showPeriod/showOneMonth.html.twig") }}
-    {% endif %}
+
+    <div>
+        <a class="btn btn-info btn-sm btnStandard" max-width="150" href="{{ path('planning_list') }}">
+            <i class="fa-solid fa-rotate-left fa-xs mx-1"></i>
+            <p class="mobile_show"> </p>
+            <span class="desktop_show">Retour à la liste</span>
+        </a>
+    </div>
+
+<script src="{{ asset('js/dishAction.js') }}"></script>
+<script src="{{ asset('js/printer.js') }}"></script> 
 {% endblock %}

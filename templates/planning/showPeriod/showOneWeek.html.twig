@@ -39,7 +39,13 @@
                         {% if 1 == d.period.id and i == d.weekId %}
                             {% for dish in dishes %}
                                 {% if dish.id == d.dish.id %}
-                                    <div class="col-12 col-md-1 colDay">{{dish.dishName}}</div>
+                                    <div class="col-12 col-md-1 colDay dropdown">
+                                        <span id="{{ d.id }}" class="dropdown-toggle" data-bs-toggle="dropdown">{{dish.dishName}}</span> 
+                                        <ul class="dropdown-menu">
+                                            <li><p class="dropdown-item cross" >Cocher</p></li>
+                                            <li><p class="dropdown-item update" data-bs-toggle="modal" data-bs-target="#modalChangeDish">Modifier</p></li>
+                                        </ul>
+                                    </div>
                                 {% endif %}
                             {% endfor %}
                         {% endif %}
@@ -50,7 +56,13 @@
                         {% if 2 == d.period.id and i == d.weekId %}
                             {% for dish in dishes %}
                                 {% if dish.id == d.dish.id %}
-                                    <div class="col-12 col-md-1 colDay">{{dish.dishName}}</div>
+                                    <div class="col-12 col-md-1 colDay dropdown">
+                                        <span id="{{ d.id }}" class="dropdown-toggle" data-bs-toggle="dropdown">{{dish.dishName}}</span> 
+                                        <ul class="dropdown-menu">
+                                            <li><p class="dropdown-item cross" >Cocher</p></li>
+                                            <li><p class="dropdown-item update" data-bs-toggle="modal" data-bs-target="#modalChangeDish">Modifier</p></li>
+                                        </ul>
+                                    </div>
                                 {% endif %}
                             {% endfor %}
                         {% endif %}
@@ -59,3 +71,4 @@
         </div>
     </div>
 </div>
+{{ include("planning/modalChangeDish.html.twig") }}
