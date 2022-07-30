@@ -2,6 +2,11 @@
     display : none;
 }
 
+.btnLogout {
+    right: 61px;
+    position: absolute;
+}
+
 .listingCat{
     margin-top: 7.2px;
     margin-bottom: 0.85em;
@@ -42,7 +47,7 @@
     width: 50px;
     max-width: 150px;
     min-width: 50px;
-    min-height: 50px;
+    min-height: 30px;
 }
 
 .btnDelete {
@@ -52,6 +57,7 @@
     margin: 5px;
     max-width: 150px;
     min-width: 50px;
+    min-height: 30px;
 }
 
 .lineThrough {

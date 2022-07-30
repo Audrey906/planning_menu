@@ -10,8 +10,13 @@
         {{ form_row(registrationForm.plainPassword, {
             label: 'Password'
         }) }}
+        {{ form_row(registrationForm.pseudo) }}
         {{ form_row(registrationForm.agreeTerms) }}
 
-        <button type="submit" class="btn">Register</button>
+        <button class="btn btn-success btn-sm btnStandard" type="submit">
+            <i class="fa-solid fa-floppy-disk fa-xs mx-1"></i>
+            <p class="mobile_show"> </p>
+            <span class="desktop_show">Enregistrer</span>
+        </button>
     {{ form_end(registrationForm) }}
 {% endblock %}
