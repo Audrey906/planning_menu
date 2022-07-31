@@ -38,13 +38,19 @@
                     {% for d in detail %}
                         {% if 1 == d.period.id and i == d.weekId %}
                             {% for dish in dishes %}
-                                {% if dish.id == d.dish.id %}
+                                {% if d.dish.id is defined and dish.id == d.dish.id %}
                                     <div class="col-12 col-md-1 colDay dropdown">
                                         <span id="{{ d.id }}" class="dropdown-toggle {% if d.done == 1 %} lineThrough {% endif %}" data-bs-toggle="dropdown">{{dish.dishName}}</span> 
                                         {{ include("planning/dropdown/dropdown.html.twig") }}
                                     </div>
                                 {% endif %}
                             {% endfor %}
+                            {% if d.dish == null %}
+                                <div class="col-12 col-md-1 colDay dropdown">
+                                    <span id="{{ d.id }}" class="dropdown-toggle {% if d.done == 1 %} lineThrough {% endif %}" data-bs-toggle="dropdown">(Vide)</span> 
+                                    {{ include("planning/dropdown/dropdown.html.twig") }}
+                                </div>
+                            {% endif %}
                         {% endif %}
                     {% endfor %} 
             </div>
@@ -52,13 +58,19 @@
                     {% for d in detail %}
                         {% if 2 == d.period.id and i == d.weekId %}
                             {% for dish in dishes %}
-                                {% if dish.id == d.dish.id %}
+                                                                {% if d.dish.id is defined and dish.id == d.dish.id %}
                                     <div class="col-12 col-md-1 colDay dropdown">
                                         <span id="{{ d.id }}" class="dropdown-toggle {% if d.done == 1 %} lineThrough {% endif %}" data-bs-toggle="dropdown">{{dish.dishName}}</span> 
                                         {{ include("planning/dropdown/dropdown.html.twig") }}
                                     </div>
                                 {% endif %}
                             {% endfor %}
+                            {% if d.dish == null %}
+                                <div class="col-12 col-md-1 colDay dropdown">
+                                    <span id="{{ d.id }}" class="dropdown-toggle {% if d.done == 1 %} lineThrough {% endif %}" data-bs-toggle="dropdown">(Vide)</span> 
+                                    {{ include("planning/dropdown/dropdown.html.twig") }}
+                                </div>
+                            {% endif %}
                         {% endif %}
                     {% endfor %} 
             </div>

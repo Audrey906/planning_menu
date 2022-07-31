@@ -1,7 +1,10 @@
 <ul class="dropdown-menu">
-    <form action="{{ path('planning_detail_update_visibility', {'id': d.id}) }}" method="post">
-        <li><button class="dropdown-item cross" type="submit" >
+    {% if dish.id is defined %}
+        <li class="mb-2"><a href="{{ path('dish_show', {'id': dish.id}) }}"> <span class="dropdown-item update">Voir</span></a></li>
+        <form action="{{ path('planning_detail_update_visibility', {'id': d.id}) }}" method="post">
+        <li class="mb-2"><button class="dropdown-item cross" type="submit" >
         {% if d.done == 0 %}Cocher {% else %}  Décocher {% endif %}</button></li>
     </form>
-    <li><p class="dropdown-item update" data-bs-toggle="modal" data-bs-target="#modalChangeDish">Modifier</p></li>
+    {% endif %}
+    <li class="mb-2"><span class="dropdown-item update" data-bs-toggle="modal" data-bs-target="#modalChangeDish">Modifier</span></li>
 </ul>

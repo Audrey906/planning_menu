@@ -13,13 +13,25 @@
                 {% if i == d.weekId %}
                     {% if 1 == d.period.id and d.day.id == day.id %}
                         <div class="col-5 colDayMobile dropdown">
-                            <p id="{{ d.id }}" class="dropdown-toggle {% if d.done == 1 %} lineThrough {% endif %}" data-bs-toggle="dropdown">{{ d.dish.dishName}}</p>
+                            <p id="{{ d.id }}" class="dropdown-toggle {% if d.done == 1 %} lineThrough {% endif %}" data-bs-toggle="dropdown">
+                                {% if d.dish != null %}
+                                    {{ d.dish.dishName}}
+                                {% else %}
+                                    (Vide)
+                                {% endif %}
+                            </p>
                             {{ include("planning/dropdown/dropdown.html.twig") }}
                         </div>
                     {% endif %}
                     {% if 2 == d.period.id and d.day.id == day.id %}
                         <div class="col-5 colDayMobile dropdown">
-                            <p id="{{ d.id }}" class="dropdown-toggle {% if d.done == 1 %} lineThrough {% endif %}" data-bs-toggle="dropdown">{{d.dish.dishName}}</p>
+                            <p id="{{ d.id }}" class="dropdown-toggle {% if d.done == 1 %} lineThrough {% endif %}" data-bs-toggle="dropdown">
+                                {% if d.dish != null %}
+                                    {{ d.dish.dishName}}
+                                {% else %}
+                                    (Vide)
+                                {% endif %}
+                            </p>
                             {{ include("planning/dropdown/dropdown.html.twig") }}
                         </div>
                     {% endif %}
