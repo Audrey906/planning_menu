@@ -119,8 +119,12 @@ class PlanningController extends AbstractController
         }
 
         foreach ($requestedData as $key => $data) {
-            if ('planning-name' !== $key && '---' !== $data) {
-                $dish = $this->dishRepo->find($data);   
+            if ('planning-name' !== $key) {
+                $dish = null;
+
+                if (0 !== $data) {
+                    $dish = $this->dishRepo->find($data);   
+                }
                 $explodeData = explode('_', $key);
 
                 $day = $this->dayRepo->find($dayArray[$explodeData[2]]);              

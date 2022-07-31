@@ -10,6 +10,7 @@
             Modifier le plat <span id="dishToUpdate">s</span> par :
             <input name="idPlanning" id="idPlanning" type="hidden"></input>
             <select name="newDish" id="newDish">
+                <option value="0"> (vide)</option>
                 {% for dish in dishes %}
                 <option value="{{ dish.id }}"> {{ dish.dishName }}</option>
                 {% endfor %}
