@@ -36,7 +36,6 @@
                                         <li><a class="nav-link text-info" href="{{ path('profil') }}">Profil</a></li>
                                         <li><a class="nav-link text-info" href="{{ path('dish_index') }}">Plat</a></li>
                                         <li><a class="nav-link text-info" href="{{ path('planning_list') }}">Menu</a></li>
-                                        <li><a class="nav-link text-info bg-danger" href="{{ path('app_logout') }}">Logout</a></li>
                                     </ul>
                                 </div>
                             </li>
@@ -49,20 +48,21 @@
                                         <ul class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuUser">
                                             <li><a class="nav-link text-info" href="{{ path('day_index') }}">Jours</a></li>
                                             <li><a class="nav-link text-info" href="{{ path('category_index') }}">Categorie</a></li>
-                                            <li><a class="nav-link text-info" href="{{ path('period_index') }}">Periode</a></li>
+                                            <li><a class="nav-link text-info" href="{{ path('period_index') }}">Période</a></li>
                                             <li><a class="nav-link text-info" href="{{ path('dish_index_all') }}">Plats</a></li>
                                             <li><a class="nav-link text-info" href="{{ path('user_index') }}">Users</a></li>
-                                            <li><a class="nav-link text-info bg-danger" href="{{ path('app_logout') }}">Logout</a></li>
                                         </ul>
                                     </div>
                                 </li>
                             {% endif %}
+                            <li class="nav-item px-2 btnLogout"> <a class="btn nav-link text-danger" href="{{ path('app_logout') }}">Déconnexion</a>
+
                         {% else %}
                             <li class="nav-item">
-                                <a class="nav-link text-info" href="{{ path('app_register') }}">Register</a>
+                                <a class="nav-link text-info" href="{{ path('app_register') }}">Créer un compte</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-info" href="{{ path('app_login') }}">Login</a>
+                                <a class="nav-link text-info" href="{{ path('app_login') }}">Connexion</a>
                             </li>
                         {% endif %}
                     </ul>

@@ -119,8 +119,12 @@ class PlanningController extends AbstractController
         }
 
         foreach ($requestedData as $key => $data) {
-            if ('planning-name' !== $key && '---' !== $data) {
-                $dish = $this->dishRepo->find($data);   
+            if ('planning-name' !== $key) {
+                $dish = null;
+
+                if (0 !== $data) {
+                    $dish = $this->dishRepo->find($data);   
+                }
                 $explodeData = explode('_', $key);
 
                 $day = $this->dayRepo->find($dayArray[$explodeData[2]]);              
@@ -161,7 +165,7 @@ class PlanningController extends AbstractController
     public function show(PlanningMenu $planning): Response
     {
         $detail = $planning->getPlanningMenuDetails()->getValues();
-        $dishes = $this->dishRepo->findBy(['user' => $this->getUser()]);
+        $dishes = $this->dishRepo->findBy(['user' => $this->getUser()], ['dish_name' => 'ASC']);
         $days = $this->dayRepo->findAll();
 
         return $this->render('planning/show.html.twig', [

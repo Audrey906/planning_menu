@@ -60,4 +60,9 @@ final class Version20220728172727 extends AbstractMigration
         $this->addSql('DROP TABLE planning_menu_detail');
         $this->addSql('DROP TABLE user');
     }
+
+    public function isTransactional(): bool
+        {
+            return false;
+        }
 }
