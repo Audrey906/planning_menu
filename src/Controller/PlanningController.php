@@ -161,7 +161,7 @@ class PlanningController extends AbstractController
     public function show(PlanningMenu $planning): Response
     {
         $detail = $planning->getPlanningMenuDetails()->getValues();
-        $dishes = $this->dishRepo->findBy(['user' => $this->getUser()]);
+        $dishes = $this->dishRepo->findBy(['user' => $this->getUser()], ['dish_name' => 'ASC']);
         $days = $this->dayRepo->findAll();
 
         return $this->render('planning/show.html.twig', [
