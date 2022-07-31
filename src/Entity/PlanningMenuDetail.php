@@ -48,12 +48,12 @@ class PlanningMenuDetail
 
     /**
      * @ORM\ManyToOne(targetEntity=Dish::class)
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $dish;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
+     * @ORM\Column(type="boolean", nullable=false, options={"default" : 0})
      */
     private $done = 0;
 

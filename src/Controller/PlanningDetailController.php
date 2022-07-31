@@ -33,7 +33,7 @@ class PlanningDetailController extends AbstractController
         // info for render
         $planning = $planningDetail->getPlanningMenu();
         $detail = $planning->getPlanningMenuDetails()->getValues();
-        $dishes = $dishRepo->findBy(['user' => $this->getUser()]);
+        $dishes = $dishRepo->findBy(['user' => $this->getUser()], ['dish_name' => 'ASC']);
         $days = $dayRepo->findAll();
 
         return $this->render('planning/show.html.twig', [
