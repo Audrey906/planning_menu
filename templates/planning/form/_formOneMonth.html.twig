@@ -1,0 +1,4 @@
+{% for i in 1..4 %}
+    {{ include('planning/form/_formOneWeek.html.twig', {'numberWeek': i}) }}
+    {{ include('planning/form/_formOneWeekMobile.html.twig', {'numberWeek': i}) }}
+{% endfor %}
