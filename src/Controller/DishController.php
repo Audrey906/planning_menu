@@ -113,7 +113,7 @@ class DishController extends AbstractController
      */
     public function indexAll(DishRepository $dishRepository): Response
     {
-        return $this->render('dish/index.html.twig', [
+        return $this->render('dish/admin/index.html.twig', [
             'dishes' => $dishRepository->findAll(),
         ]);
     }

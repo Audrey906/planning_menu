@@ -5,12 +5,12 @@
 {% block body %}
 {{ include("planning/dropdown/modalChangeDish.html.twig") }}
     <div id="planningArray">
-        <div class="row align-items-end">
-            <div class="col-4 offset-md-3 col-md-2"><h1>{{ planning.planningName }}</h1></div>
-            <div class="col-4 col-md-2">
+        <h1 class="title">{{ planning.planningName }}</h1>
+        <div class="row align-items-end py-4 mt-3 mt-md-5">
+            <div class="col-8 col-md-6 mt-2 mt-md-4">
                 <p>Crée le {{ planning.planningCreatedDate|date("Y/m/d H:i:s") }}</p>
             </div>
-            <div class="col-4 col-md-2">    
+            <div class="col-2 col-md-6 justify-content-end d-flex">    
                 <button class="btn btn-info desktop_show" id="print" onclick="print()"/>Imprimer</button>
             </div>
         </div>

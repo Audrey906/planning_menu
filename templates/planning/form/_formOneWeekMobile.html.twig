@@ -10,10 +10,10 @@
         <div class="row border">
             <div class="col-2 bg-dark text-info"><p>{{ day.daySmallname }}</p></div>
             <div class="col-5">
-                {{ include('planning/_formOneDayBodyMidday.html.twig', {'numberDay': i}, {'numberWeek' : numberWeek}) }}
+                {{ include('planning/form/_formOneDayBodyMidday.html.twig', {'numberDay': i}, {'numberWeek' : numberWeek}) }}
             </div>
             <div class="col-5">
-                {{ include('planning/_formOneDayBodyNight.html.twig', {'numberDay': i}, {'numberWeek' : numberWeek}) }}
+                {{ include('planning/form/_formOneDayBodyNight.html.twig', {'numberDay': i}, {'numberWeek' : numberWeek}) }}
             </div>
         </div>
     {% endfor %} 

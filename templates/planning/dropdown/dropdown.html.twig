@@ -1,6 +1,6 @@
 <ul class="dropdown-menu">
-    {% if dish.id is defined %}
-        <li class="mb-2"><a href="{{ path('dish_show', {'id': dish.id}) }}"> <span class="dropdown-item update">Voir</span></a></li>
+    {% if d.dish.id is defined %}
+        <li class="mb-2"><a href="{{ path('dish_show', {'id': d.dish.id}) }}"> <span class="dropdown-item update">Voir</span></a></li>
         <form action="{{ path('planning_detail_update_visibility', {'id': d.id}) }}" method="post">
         <li class="mb-2"><button class="dropdown-item cross" type="submit" >
         {% if d.done == 0 %}Cocher {% else %}  Décocher {% endif %}</button></li>

@@ -19,7 +19,7 @@ class PlanningMenuDetail
 
     /**
      * @ORM\ManyToOne(targetEntity=PlanningMenu::class, inversedBy="planningMenuDetails")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false, onDelete="cascade")
      */
     private $planning_menu;
 
@@ -48,7 +48,7 @@ class PlanningMenuDetail
 
     /**
      * @ORM\ManyToOne(targetEntity=Dish::class)
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     private $dish;
 

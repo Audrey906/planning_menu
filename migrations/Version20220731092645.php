@@ -28,4 +28,9 @@ final class Version20220731092645 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->addSql('ALTER TABLE planning_menu_detail CHANGE dish_id dish_id INT NOT NULL, CHANGE done done TINYINT(1) DEFAULT \'0\'');
     }
+
+    public function isTransactional(): bool
+    {
+        return false;
+    }
 }
