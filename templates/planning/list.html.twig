@@ -4,30 +4,32 @@
 
 {% block body %}
 <div class="container">
-    <h1>List des Menus</h1>
+    <div class="p-3 p-md-5">
+        <h1 class="title">Liste des Menus</h1>
+    </div>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Nom</th>
-                <th>Date</th>
-                <th>Période</th>
+                <th class="desktop_show_th_td">Date</th>
+                <th class="desktop_show_th_td">Période</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for menu in planning %}
             <tr>
-                <td>#{{ menu.id }}</td>
                 <td>{{ menu.planningName }}</td>
-                <td >{{ menu.planningCreatedDate|date("Y-m-d H:i:s") }}</td>
-                <td>1 {{ menu.type.periodName }}</td>
-                <td>
-                    <a class="btn btn-info btn-sm btnStandard my-0"  href="{{ path('planning_show', {'id': menu.id}) }}">
+                <td class="desktop_show_th_td">{{ menu.planningCreatedDate|date("Y-m-d H:i:s") }}</td>
+                <td class="desktop_show_th_td">1 {{ menu.type.periodName }}</td>
+                <td class="d-flex">
+                    <a class="btn btn-info btn-sm btnStandard"  href="{{ path('planning_show', {'id': menu.id}) }}">
                         <i class="fa-solid fa-eye fa-xs mx-1"></i>
                         <p class="mobile_show"> </p>
                         <span class="desktop_show">Voir</span> 
                     </a>
+                    {{ include('planning/form/_delete_form.html.twig') }}
                     {# <a href="{{ path('period_edit', {'id': period.id}) }}">edit</a> #}
                 </td>
             </tr>

@@ -1,3 +1,7 @@
+.mainContainerFluid {
+    background-color: white;
+}
+
 #submitButton, #divGenerateButton{
     display : none;
 }
@@ -30,6 +34,11 @@
 .desktop_show {
     display: none;
 }
+
+.desktop_show_th_td {
+    display: none;
+}
+
 
 .mobile_show {
     display: block;
@@ -64,11 +73,27 @@
     text-decoration: line-through;
   }
 
+  .title {
+    color:white;
+    background-color: #343A40;
+    width: 300px;
+    position:absolute;
+    left:0;
+    display: flex;
+    top: 90px;
+    justify-content: end;
+    padding-right:30px
+  }
+
 /************************************************************************************************             1025 */
 
 @media screen and (min-width: 1025px) {
     .desktop_show {
         display: block;
+    }
+
+    .desktop_show_th_td {
+        display: table-cell;
     }
     
     .mobile_show {
@@ -83,4 +108,10 @@
     .btnDelete {
         margin: 20px;
     }
+
+    .title {
+        width: 600px;
+        top: 100px;
+        padding-right:30px
+      }
 }

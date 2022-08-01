@@ -30,7 +30,7 @@ class Dish
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="dishes")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false, onDelete="cascade")
      */
     private $user;
 

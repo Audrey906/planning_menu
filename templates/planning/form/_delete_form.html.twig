@@ -1,0 +1,5 @@
+<form method="post" action="{{ path('planning_delete', {'id': menu.id}) }}" onsubmit="return confirm('Êtes-vous sur de vouloir supprimer ce planning?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ menu.id) }}">
+    <button class="btn btn-danger btn-sm btnDelete" height="20"><i class="fa-solid fa-trash fa-xs mx-1"></i> <p class="mobile_show"> </p><span class="desktop_show">Supprimer</span></button>
+    
+</form>

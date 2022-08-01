@@ -9,6 +9,7 @@ use App\Entity\PlanningMenuDetail;
 use App\Repository\DishRepository;
 use App\Repository\PeriodRepository;
 use App\Manager\PlanningDetailManager;
+use App\Manager\PlanningManager;
 use App\Repository\CategoryRepository;
 use App\Repository\PlanningMenuDetailRepository;
 use App\Repository\PlanningMenuRepository;
@@ -44,33 +45,40 @@ class PlanningController extends AbstractController
      */
     private $periodRepo;
 
+     /**
+     * @var PlanningManager
+     */
+    private $planningManager;
+
     public function __construct(
         CategoryRepository $categoryRepo,
         DishRepository $dishRepo,
         PlanningDetailManager $planningDetailManager,
         DayRepository $dayRepo,
-        PeriodRepository $periodRepo)
+        PeriodRepository $periodRepo,
+        PlanningManager $planningManager
+        )
     {
         $this->categoryRepo = $categoryRepo;
         $this->dishRepo = $dishRepo;
         $this->planningDetailManager = $planningDetailManager;
         $this->dayRepo = $dayRepo;
         $this->periodRepo = $periodRepo;
+        $this->planningManager = $planningManager;
     }
 
     /**
-     * @Route("/planning", name="planning",)
+     * @Route("/planning", name="planning", methods={"GET"})
      */
-    public function index(): Response
+    public function generator(): Response
     {
         $categories = $this->categoryRepo->findBy(['category_visible' => 1]);
         $dishes = $this->dishRepo->findBy(['user' => $this->getUser()], ['dish_name' => 'ASC']);
         $days = $this->dayRepo->findAll();
 
-        return $this->render('planning/index.html.twig', [
+        return $this->render('planning/generator.html.twig', [
             'dishes' => $dishes,
             'categories' => $categories,
-            'controller_name' => 'PlanningController',
             'days' => $days,
         ]);
     }
@@ -81,70 +89,13 @@ class PlanningController extends AbstractController
     public function new(Request $request): Response
     {
         $requestedData = $request->request->all();
-        // add New planningMenu
-        $planning = new PlanningMenu();
 
-        
-        if (3 === count($requestedData)) {
-            $idPeriod = 1;
-        } elseif (15 === count($requestedData)) {
-            $idPeriod = 2;
-        } else {
-            $idPeriod = 3;
-        }
-        $period = $this->periodRepo->find( $idPeriod);
-
-        $planning->setType($period);
-        $planning->setUser($this->getUser());
-        $planning->setPlanningName($requestedData['planning-name']);
-        $planning->setPlanningCreatedDate(new \DateTime());
+        $planning = $this->planningManager->persist($requestedData, $this->getUser());
+        $this->planningDetailManager->persist($planning, $requestedData);
         $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($planning);
         $entityManager->flush();
 
-        // add New planningMenuDetails
-        $days = $this->dayRepo->findAll();
-        foreach ($days as $k => $d) {
-            $dayArray[$d->getId()] = $d;
-        }
-
-        $periods = $this->periodRepo->findAll();
-        foreach ($periods as $k => $p) {
-            $periodArray[$p->getId()] = $p;
-        }
-
-        $cats = $this->categoryRepo->findAll();
-        foreach ($cats as $k => $c) {
-            $catArray[$c->getId()] = $c;
-        }
-
-        foreach ($requestedData as $key => $data) {
-            if ('planning-name' !== $key) {
-                $dish = null;
-
-                if (0 !== $data) {
-                    $dish = $this->dishRepo->find($data);   
-                }
-                $explodeData = explode('_', $key);
-
-                $day = $this->dayRepo->find($dayArray[$explodeData[2]]);              
-                $period = $this->periodRepo->find($periodArray[$explodeData[1]]); 
-                $cat = $this->categoryRepo->find($catArray[$explodeData[3]]); 
-
-                $planningDetail = new PlanningMenuDetail();
-                $planningDetail->setWeekId($explodeData[0]);
-                $planningDetail->setDish($dish);
-                $planningDetail->setDay($day);
-                $planningDetail->setPeriod($period);
-                $planningDetail->setCategoryId($cat);
-                $planningDetail->setPlanningMenu($planning);
-                $entityManager->persist($planningDetail);
-               
-            }
-        }
-        $entityManager->flush();
-
-        return $this->redirectToRoute('planning_list', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('planning_list', [], Response::HTTP_CREATED);
     }
 
     /**
@@ -152,7 +103,7 @@ class PlanningController extends AbstractController
      */
     public function planning_list(PlanningMenuRepository $planningRepo): Response
     {
-       $planning = $planningRepo->findAll(['user' => $this->getUser()]);
+       $planning = $planningRepo->findBy(['user' => $this->getUser()]);
 
         return $this->render('planning/list.html.twig', [
             'planning' => $planning,
@@ -174,5 +125,19 @@ class PlanningController extends AbstractController
             'dishes' => $dishes,
             'days' => $days,
         ]);
+    }
+
+    /**
+     * @Route("/{id}", name="planning_delete", methods={"POST"})
+     */
+    public function delete(Request $request, PlanningMenu $planning): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$planning->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($planning);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('planning_list', [], Response::HTTP_SEE_OTHER);
     }
 }
