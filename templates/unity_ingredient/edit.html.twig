@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+
+<title>Edit UnityIngredient</title>
+
+{% block body %}
+    <h1>Edit UnityIngredient</h1>
+
+    {{ include('unity_ingredient/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('unity_ingredient_index') }}">back to list</a>
+
+    {{ include('unity_ingredient/_delete_form.html.twig') }}
+{% endblock %}

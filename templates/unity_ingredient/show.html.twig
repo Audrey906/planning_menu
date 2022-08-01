@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<title>UnityIngredient</title>
+
+{% block body %}
+    <h1>UnityIngredient</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ unity_ingredient.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ unity_ingredient.name }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('unity_ingredient_index') }}">back to list</a>
+
+    <a href="{{ path('unity_ingredient_edit', {'id': unity_ingredient.id}) }}">edit</a>
+
+    {{ include('unity_ingredient/_delete_form.html.twig') }}
+{% endblock %}

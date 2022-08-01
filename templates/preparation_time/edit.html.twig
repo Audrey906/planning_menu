@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+
+<title>Edit PreparationTime</title>
+
+{% block body %}
+    <h1>Edit PreparationTime</h1>
+
+    {{ include('preparation_time/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('preparation_time_index') }}">back to list</a>
+
+    {{ include('preparation_time/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<title>PreparationTime index</title>
+
+{% block body %}
+    <h1>PreparationTime index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for preparation_time in preparation_times %}
+            <tr>
+                <td>{{ preparation_time.id }}</td>
+                <td>{{ preparation_time.name }}</td>
+                <td>
+                    <a href="{{ path('preparation_time_show', {'id': preparation_time.id}) }}">show</a>
+                    <a href="{{ path('preparation_time_edit', {'id': preparation_time.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('preparation_time_new') }}">Create new</a>
+{% endblock %}

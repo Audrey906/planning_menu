@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<title>UnityIngredient index</title>
+
+{% block body %}
+    <h1>UnityIngredient index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for unity_ingredient in unity_ingredients %}
+            <tr>
+                <td>{{ unity_ingredient.id }}</td>
+                <td>{{ unity_ingredient.name }}</td>
+                <td>
+                    <a href="{{ path('unity_ingredient_show', {'id': unity_ingredient.id}) }}">show</a>
+                    <a href="{{ path('unity_ingredient_edit', {'id': unity_ingredient.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('unity_ingredient_new') }}">Create new</a>
+{% endblock %}

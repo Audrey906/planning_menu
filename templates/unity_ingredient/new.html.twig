@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+
+<title>New UnityIngredient</title>
+
+{% block body %}
+    <h1>Create new UnityIngredient</h1>
+
+    {{ include('unity_ingredient/_form.html.twig') }}
+
+    <a href="{{ path('unity_ingredient_index') }}">back to list</a>
+{% endblock %}
